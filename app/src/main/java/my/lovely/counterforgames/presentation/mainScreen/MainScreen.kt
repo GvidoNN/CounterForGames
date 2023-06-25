@@ -44,6 +44,7 @@ fun MainScreen(
             )
 
             IconButton(onClick = {
+                mainViewModel.clicked()
 
             }) {
                 Icon(
