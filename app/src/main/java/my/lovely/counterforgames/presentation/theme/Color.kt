@@ -1,4 +1,4 @@
-package my.lovely.counterforgames.ui.theme
+package my.lovely.counterforgames.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
