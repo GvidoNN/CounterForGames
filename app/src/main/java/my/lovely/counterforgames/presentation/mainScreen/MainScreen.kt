@@ -1,22 +1,29 @@
 package my.lovely.counterforgames.presentation.mainScreen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import my.lovely.counterforgames.domain.models.PlayerModel
 
 @Composable
 fun MainScreen(
     mainViewModel: MainViewModel = viewModel()
 ) {
+    val players = mainViewModel.players.observeAsState()
+    Log.d("MyLog",players.value.toString())
+    var text by remember { mutableStateOf("") }
+
 
     Column(
         modifier = Modifier
@@ -30,9 +37,9 @@ fun MainScreen(
 
         ) {
             TextField(
-                value = "",
+                value = text,
                 onValueChange = {
-
+                    text = it
                 },
                 label = {
                     Text(text = "Name...")
@@ -44,7 +51,7 @@ fun MainScreen(
             )
 
             IconButton(onClick = {
-                mainViewModel.clicked()
+                mainViewModel.insertPlayer(player = PlayerModel(id = 0, name = text, score = 100))
 
             }) {
                 Icon(

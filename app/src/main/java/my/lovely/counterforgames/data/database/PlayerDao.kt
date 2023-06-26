@@ -1,11 +1,11 @@
 package my.lovely.counterforgames.data.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import kotlinx.coroutines.flow.Flow
 import my.lovely.counterforgames.domain.models.PlayerModel
 
 @Dao
@@ -21,5 +21,5 @@ interface PlayerDao {
     suspend fun deletePlayer(player: PlayerModel)
 
     @Query("SELECT * FROM player_data_table")
-    fun getAllBooks(): Flow<List<PlayerModel>>
+    fun getAllPlayers(): LiveData<List<PlayerModel>>
 }
